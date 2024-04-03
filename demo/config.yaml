@@ -1,0 +1,8 @@
+apollo:
+  AppID: "test"
+  Cluster: "dev"
+  IP: "http://localhost:8080"
+  NamespaceName: "application,test.yaml"
+  MustStart: true
+  apolloNotDefaultNamespaceKeyMap:
+    test.yaml: "server,logger,redis,database"

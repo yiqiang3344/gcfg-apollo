@@ -36,3 +36,9 @@ if err != nil {
 }
 gcfg.Instance().SetAdapter(adapter)
 ```
+
+具体参考`demo/main.go`，修改`demo/config.yaml`中的apollo配置之后，运行：
+```bash
+cd demo
+GF_GCFG_FILE=config.yaml gf run main.go
+```

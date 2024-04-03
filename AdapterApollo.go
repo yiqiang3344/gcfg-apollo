@@ -14,12 +14,12 @@ import (
 type AdapterApollo struct {
 	Config          config.AppConfig
 	Client          agollo.Client
-	IsAvailable     bool
 	KeyNamespaceMap map[string]string
 }
 
 func (a *AdapterApollo) Available(ctx context.Context, resource ...string) (ok bool) {
-	ok = a.IsAvailable
+	//默认namespace的key的数量大于0则表示可用
+	ok = a.Client.GetDefaultConfigCache().EntryCount() > 0
 	return
 }
 func (a *AdapterApollo) Get(ctx context.Context, pattern string) (value interface{}, err error) {
@@ -81,7 +81,6 @@ func CreateAdapterApollo(ctx context.Context) (adapter *AdapterApollo, err error
 	if err != nil {
 		return
 	}
-	adapter.IsAvailable = true
 	//设置key的namespace的map，用于处理非默认namespace的key
 	adapter.KeyNamespaceMap = map[string]string{}
 	if _map, ok := apolloCfgMap["apolloNotDefaultNamespaceKeyMap"].(map[string]interface{}); ok {
