@@ -3,6 +3,9 @@ apollo:
   Cluster: "dev"
   IP: "http://localhost:8080"
   NamespaceName: "application,test.yaml"
+  IsBackupConfig: false
+  BackupConfigPath: ""
+  Secret: ""
+  SyncServerTimeout: 0
   MustStart: true
-  apolloNotDefaultNamespaceKeyMap:
-    test.yaml: "server,logger,redis,database"
+  Watch: true

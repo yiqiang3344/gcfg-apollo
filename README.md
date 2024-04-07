@@ -1,22 +1,21 @@
 ## goframe的apollo配置适配器
+对 `github.com/gogf/gf/contrib/config/apollo/v2` 做了优化，可同时支持多个不通格式的namespace.
 
 ### 配置文件示例
 
 ```yaml
 apollo:
-  AppID: "yjqtest"
+  AppID: "test"
   Cluster: "dev"
   IP: "http://localhost:8080"
   NamespaceName: "application,test.yaml"
+  IsBackupConfig: false
+  BackupConfigPath: ""
+  Secret: ""
+  SyncServerTimeout: 0
   MustStart: true
-  apolloNotDefaultNamespaceKeyMap:
-    test.yaml: "server,logger,redis,database"
+  Watch: true
 ```
-
-说明
-
-- `apolloNotDefaultNamespaceKeyMap`：表示非默认namespace(也就是application)的，需要配置namespace对应的顶级key的列表。
-    - 因为goframe的gcfg的Get()方法没有关于namespace的传值，也不想每次读取配置都要把所有namespace的配置都遍历一遍，所以用了这种方法。
 
 ### 依赖
 `github.com/apolloconfig/agollo/v4`
