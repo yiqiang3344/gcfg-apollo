@@ -1,5 +1,5 @@
 ## goframe的apollo配置适配器
-对 `github.com/gogf/gf/contrib/config/apollo/v2` 做了优化，可同时支持多个不通格式的namespace.
+对 `github.com/gogf/gf/contrib/config/apollo/v2` 做了优化，可同时支持多个不同格式的namespace.
 
 ### 配置文件示例
 
