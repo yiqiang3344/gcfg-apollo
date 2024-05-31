@@ -41,3 +41,6 @@ gcfg.Instance().SetAdapter(adapter)
 cd demo
 GF_GCFG_FILE=config.yaml gf run main.go
 ```
+
+### 注意
+请确保配置中`NamespaceName`的第一个namesapce有发布过，否则会出现`panic: start failed cause no config was read`的错误。
