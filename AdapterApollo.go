@@ -32,7 +32,7 @@ type AdapterApollo struct {
 	value  *g.Var // Configmap content cached. It is `*gjson.Json` value internally.
 }
 
-func CreateAdapterApollo(ctx context.Context) (adapter *AdapterApollo, err error) {
+func CreateAdapterApollo(ctx context.Context, ip ...string) (adapter *AdapterApollo, err error) {
 	apolloCfg, err := gcfg.Instance().Get(ctx, "apollo")
 	if err != nil {
 		return
@@ -49,6 +49,10 @@ func CreateAdapterApollo(ctx context.Context) (adapter *AdapterApollo, err error
 		SyncServerTimeout: gconv.Int(apolloCfgMap["SyncServerTimeout"]),
 		MustStart:         apolloCfgMap["MustStart"].(bool),
 		Watch:             apolloCfgMap["Watch"].(bool),
+	}
+	// 有自定义Ip配置则优先使用
+	if len(ip) > 0 {
+		config.IP = ip[0]
 	}
 	// Data validation.
 	err = g.Validator().Data(config).Run(ctx)
